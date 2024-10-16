@@ -1,0 +1,15 @@
+type Approval @entity {
+    id: ID!
+    transactionHash: String!
+    eventIndex: Int!
+    blockNumber: Int!
+    value: String!
+}
+
+type Transfer @entity {
+    id: ID!
+    transactionHash: String!
+    eventIndex: Int!
+    blockNumber: Int!
+    value: String!
+}

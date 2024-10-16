@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package contract.v1;
+message Events {
+    repeated Sei_Approval sei_approvals = 1;
+    repeated Sei_Transfer sei_transfers = 2;
+}
+message Calls {
+    repeated Sei_ApproveCall sei_call_approves = 1;
+    repeated Sei_TransferCall sei_call_transfers = 2;
+    repeated Sei_TransferFromCall sei_call_transfer_froms = 3;
+}
+message EventsCalls {
+    Events events = 1;
+    Calls calls = 2;
+}
+message Sei_Approval {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes owner = 5;
+    bytes spender = 6;
+    string value = 7;
+}
+message Sei_Transfer {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes from = 5;
+    bytes to = 6;
+    string value = 7;
+}
+  
+message Sei_ApproveCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes spender = 6;
+    string value = 7;
+    bool output_param0 = 8;
+}
+message Sei_TransferCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes to = 6;
+    string value = 7;
+    bool output_param0 = 8;
+}
+message Sei_TransferFromCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes from = 6;
+    bytes to = 7;
+    string value = 8;
+    bool output_param0 = 9;
+}
